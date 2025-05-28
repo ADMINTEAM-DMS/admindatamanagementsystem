@@ -37,7 +37,7 @@
 
         .document-list {
             width: 350px;
-            background-color: #e6e6e6; /* White background */
+            background-color: #ffffff; /* White background */
             color: #333333; /* Dark text */
             padding: 20px;
             overflow-y: auto;
@@ -153,33 +153,38 @@
     <div class="document-list">
         <h1>LABORATORY REPORTS/ACTIVITIES</h1>
         
-       
+    
         <div class="document-item" onclick="showDocument('doc1', this)">
-            <span>Measuring Objects </span>
+            <span>Introduction to Laboratory Tools and Safety </span>
             <span class="document-time"></span>
         </div>
         
         <div class="document-item" onclick="showDocument('doc2', this)">
-            <span>Slime Making</span>
+            <span>Laboratory Tools</span>
             <span class="document-time"></span>
         </div>
-        
+
+
         <div class="document-item" onclick="showDocument('doc3', this)">
-            <span>Graphs</span>
+            <span>Scavenger Hunt: Exploring Ecosystems</span>
             <span class="document-time"></span>
         </div>
-
-         <div class="document-item" onclick="showDocument('doc4', this)">
-            <span>Biomes</span>
+        <div class="document-item" onclick="showDocument('doc4', this)">
+            <span>Separating Mixtures</span>
             <span class="document-time"></span>
         </div>
-
         <div class="document-item" onclick="showDocument('doc5', this)">
-            <span>Parts of the Flower</span>
+            <span>Paper Roller Coaster Lab</span>
             <span class="document-time"></span>
         </div>
-    
-        
+        <div class="document-item" onclick="showDocument('doc6', this)">
+            <span>Cotton Ball Launcher </span>
+            <span class="document-time"></span>
+        </div>
+        <div class="document-item" onclick="showDocument('doc7', this)">
+            <span>Electric Circuit</span>
+            <span class="document-time"></span>
+        </div>
         
     </div>
 
@@ -196,11 +201,13 @@
 
     <script>
         const documents = {
-            doc1: 'https://docs.google.com/document/d/18He1pe-GzLVMyzGnp_y-6s2PhRTlSEoKtJh2OKSGQYo',
-            doc2: 'https://docs.google.com/document/d/1smd5GXImPPlwPUGLChNIPsiwKviDNzjBo7R-TcJCc48',
-            doc3: 'https://docs.google.com/document/d/1B3I0J3B_x8h1Jq9E64eouD3H5grzwRJjlCGqMYvN4bs',
-            doc4: 'https://docs.google.com/document/d/1M4ue6HwKkUaOE6_Sx5yd9gFFZco8riFNFNClEZFmyM4',
-            doc5: 'https://docs.google.com/document/d/1S8eg-jyTmY2AkPOfMbJZaynbp0fqxj9ECldaQBaPa7s'
+            doc1: 'https://docs.google.com/document/d/1XE8YZIR_mGrtxI6GnpTdaX7isgfinZtRCRZnuPi1rcY',
+            doc2: 'https://docs.google.com/document/d/1C2nQn-npmbagRP0XuZfFKJ5TSi68Jw8ruKtcN6KuXy8',
+            doc3: 'https://docs.google.com/document/d/1W5oQspTY8u-nFUu9nkBBxJVYQAhs3I_91lzJT1mldPE',
+            doc4: 'https://docs.google.com/document/d/1w5aUH2lprwN26wZxDicLo4ZxQ-y7TR5ZpraGMymjWGY',
+            doc5: 'https://docs.google.com/document/d/1b_KHdraxQjjtjiU-rh7Vw71UcToOhK_W2Stif3zVlrA',
+            doc6: 'https://docs.google.com/document/d/1orMgOB5j8Y_v60olqQrWHs24CxxYk9qWJuNtsAQhkaE',
+            doc7: 'https://docs.google.com/document/d/1Pkz-Ry5J16N-9ycJxzmvJwPRkjsgykIfFJjkqpZfsl8'
         };
 
         let currentDoc = '';
