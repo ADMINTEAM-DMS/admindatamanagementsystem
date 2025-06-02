@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grade 4 Science Laboratory Reports</title>
+    <title>Grade 7 Science Laboratory Reports</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
@@ -19,13 +19,13 @@
             display: flex;
             flex-direction: column;
             height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
             color: #2d3748;
             overflow: hidden;
         }
 
-        .grade4-banner {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .grade7-banner {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
             color: white;
             text-align: center;
             padding: 12px;
@@ -39,14 +39,14 @@
             border-bottom: 1px solid rgba(255,255,255,0.2);
         }
 
-        .grade4-banner::before {
+        .grade7-banner::before {
             content: "";
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><text x="20" y="100" font-family="Arial" font-size="40" fill="rgba(255,255,255,0.1)" font-weight="bold">SCIENCE</text></svg>');
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><text x="10" y="100" font-family="Arial" font-size="35" fill="rgba(255,255,255,0.1)" font-weight="bold">BIOLOGY</text></svg>');
             opacity: 0.3;
             animation: watermarkScroll 60s linear infinite;
         }
@@ -56,7 +56,7 @@
             100% { background-position: 200px 200px; }
         }
 
-        .grade4-banner-content {
+        .grade7-banner-content {
             position: relative;
             z-index: 2;
             display: flex;
@@ -66,7 +66,7 @@
             gap: 8px;
         }
 
-        .grade4-banner h1 {
+        .grade7-banner h1 {
             font-size: 1.1em;
             margin: 0;
             letter-spacing: 1px;
@@ -114,7 +114,7 @@
             bottom: 30px;
             left: 30px;
             padding: 12px 20px;
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
             color: white;
             border: none;
             border-radius: 50px;
@@ -122,7 +122,7 @@
             font-size: 14px;
             font-weight: 600;
             z-index: 1000;
-            box-shadow: 0 8px 32px rgba(79, 172, 254, 0.3);
+            box-shadow: 0 8px 32px rgba(5, 150, 105, 0.3);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
@@ -131,7 +131,7 @@
 
         .back-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(79, 172, 254, 0.4);
+            box-shadow: 0 12px 40px rgba(5, 150, 105, 0.4);
         }
 
         .sidebar {
@@ -149,7 +149,7 @@
 
         .sidebar-header {
             padding: 25px 25px 18px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
             color: white;
             position: relative;
             overflow: hidden;
@@ -199,7 +199,7 @@
         .search-input {
             width: 100%;
             padding: 12px 16px 12px 45px;
-            border: 2px solid rgba(102, 126, 234, 0.1);
+            border: 2px solid rgba(5, 150, 105, 0.1);
             border-radius: 12px;
             background: rgba(255, 255, 255, 0.8);
             font-size: 14px;
@@ -208,9 +208,9 @@
         }
 
         .search-input:focus {
-            border-color: #667eea;
+            border-color: #059669;
             background: white;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
         }
 
         .search-icon {
@@ -218,7 +218,7 @@
             left: 15px;
             top: 50%;
             transform: translateY(-50%);
-            color: #667eea;
+            color: #059669;
             font-size: 16px;
         }
 
@@ -238,7 +238,7 @@
         }
 
         .document-list::-webkit-scrollbar-thumb {
-            background: #667eea;
+            background: #059669;
             border-radius: 3px;
         }
 
@@ -276,15 +276,15 @@
         .document-item:hover {
             transform: translateY(-3px);
             background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
-            border-color: rgba(102, 126, 234, 0.3);
+            box-shadow: 0 10px 30px rgba(5, 150, 105, 0.2);
+            border-color: rgba(5, 150, 105, 0.3);
         }
 
         .document-item.selected {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #059669, #047857);
             color: white;
             transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 15px 35px rgba(5, 150, 105, 0.4);
         }
 
         .document-item.selected::before {
@@ -300,7 +300,7 @@
 
         .document-icon {
             font-size: 20px;
-            color: #667eea;
+            color: #059669;
             transition: all 0.3s ease;
         }
 
@@ -378,14 +378,14 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
             color: white;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 8px 25px rgba(5, 150, 105, 0.4);
         }
 
         .btn-secondary {
@@ -432,7 +432,7 @@
         .placeholder-icon {
             font-size: 64px;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #059669, #047857);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -471,8 +471,8 @@
         .loading-spinner {
             width: 40px;
             height: 40px;
-            border: 3px solid rgba(102, 126, 234, 0.3);
-            border-top: 3px solid #667eea;
+            border: 3px solid rgba(5, 150, 105, 0.3);
+            border-top: 3px solid #059669;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -504,7 +504,7 @@
                 font-size: 13px;
             }
 
-            .grade4-banner {
+            .grade7-banner {
                 padding: 10px;
                 font-size: 18px;
             }
@@ -516,15 +516,15 @@
     </style>
 </head>
 <body>
-    <div class="grade4-banner">
-        <div class="grade4-banner-content">
-            <h1>GRADE 4 SCIENCE LABORATORY</h1>
+    <div class="grade7-banner">
+        <div class="grade7-banner-content">
+            <h1>GRADE 7 SCIENCE LABORATORY</h1>
             <div class="science-icons-container">
-                <i class="fas fa-flask science-icon"></i>
-                <i class="fas fa-atom science-icon"></i>
                 <i class="fas fa-microscope science-icon"></i>
+                <i class="fas fa-dna science-icon"></i>
                 <i class="fas fa-seedling science-icon"></i>
-                <i class="fas fa-magnet science-icon"></i>
+                <i class="fas fa-eye science-icon"></i>
+                <i class="fas fa-atom science-icon"></i>
             </div>
         </div>
     </div>
@@ -538,7 +538,7 @@
         <div class="sidebar">
             <div class="sidebar-header">
                 <h1>Laboratory Reports</h1>
-                <p>Interactive Science Activities & Documentation</p>
+                <p>Advanced Biology & Life Science Activities</p>
             </div>
             
             <div class="search-container">
@@ -549,56 +549,56 @@
             </div>
             
             <div class="document-list" id="documentList">
-                <div class="document-item" onclick="showDocument('doc1', this)" data-name="measuring objects">
+                <div class="document-item" onclick="showDocument('doc1', this)" data-name="dichotomous key">
                     <div class="document-content">
-                        <i class="fas fa-ruler document-icon"></i>
+                        <i class="fas fa-code-branch document-icon"></i>
                         <div class="document-info">
-                            <div class="document-name">Measuring Objects</div>
-                            <div class="document-description">Length measurement with rulers</div>
+                            <div class="document-name">Dichotomous Key</div>
+                            <div class="document-description">Species identification & classification</div>
                         </div>
                     </div>
                     <div class="document-status">Active</div>
                 </div>
                 
-                <div class="document-item" onclick="showDocument('doc2', this)" data-name="slime making">
+                <div class="document-item" onclick="showDocument('doc2', this)" data-name="microscopy lab proper use of a compound microscope">
                     <div class="document-content">
-                        <i class="fas fa-flask document-icon"></i>
+                        <i class="fas fa-microscope document-icon"></i>
                         <div class="document-info">
-                            <div class="document-name">Slime Making</div>
-                            <div class="document-description">Chemical reaction experiment</div>
+                            <div class="document-name">Microscopy Lab: Proper Use of a Compound Microscope</div>
+                            <div class="document-description">Microscope techniques & protocols</div>
                         </div>
                     </div>
                     <div class="document-status">Active</div>
                 </div>
                 
-                <div class="document-item" onclick="showDocument('doc3', this)" data-name="graphs">
+                <div class="document-item" onclick="showDocument('doc3', this)" data-name="microscopy">
                     <div class="document-content">
-                        <i class="fas fa-chart-line document-icon"></i>
+                        <i class="fas fa-search-plus document-icon"></i>
                         <div class="document-info">
-                            <div class="document-name">Graphs</div>
-                            <div class="document-description">Data visualization & analysis</div>
+                            <div class="document-name">Microscopy</div>
+                            <div class="document-description">Advanced microscopy principles</div>
                         </div>
                     </div>
                     <div class="document-status">Active</div>
                 </div>
 
-                <div class="document-item" onclick="showDocument('doc4', this)" data-name="biomes">
+                <div class="document-item" onclick="showDocument('doc4', this)" data-name="edible cell model making lab">
                     <div class="document-content">
-                        <i class="fas fa-tree document-icon"></i>
+                        <i class="fas fa-cookie-bite document-icon"></i>
                         <div class="document-info">
-                            <div class="document-name">Biomes</div>
-                            <div class="document-description">Ecosystem exploration</div>
+                            <div class="document-name">Edible Cell Model Making Lab</div>
+                            <div class="document-description">Cell structure & organelle identification</div>
                         </div>
                     </div>
                     <div class="document-status">Active</div>
                 </div>
 
-                <div class="document-item" onclick="showDocument('doc5', this)" data-name="parts of the flower">
+                <div class="document-item" onclick="showDocument('doc5', this)" data-name="oreo cookie lab mitosis and meiosis">
                     <div class="document-content">
-                        <i class="fas fa-seedling document-icon"></i>
+                        <i class="fas fa-cell document-icon"></i>
                         <div class="document-info">
-                            <div class="document-name">Parts of the Flower</div>
-                            <div class="document-description">Plant anatomy study</div>
+                            <div class="document-name">Oreo Cookie Lab – Mitosis and Meiosis</div>
+                            <div class="document-description">Cell division process modeling</div>
                         </div>
                     </div>
                     <div class="document-status">Active</div>
@@ -630,8 +630,8 @@
                 
                 <div class="placeholder" id="placeholder">
                     <i class="fas fa-microscope placeholder-icon"></i>
-                    <h3>Welcome to Laboratory Reports</h3>
-                    <p>Select a report from the sidebar to begin exploring</p>
+                    <h3>Welcome to Grade 7 Laboratory Reports</h3>
+                    <p>Select a report from the sidebar to begin exploring advanced biology concepts</p>
                 </div>
             </div>
         </div>
@@ -639,19 +639,19 @@
 
     <script>
         const documents = {
-            doc1: 'https://docs.google.com/document/d/18He1pe-GzLVMyzGnp_y-6s2PhRTlSEoKtJh2OKSGQYo',
-            doc2: 'https://docs.google.com/document/d/1smd5GXImPPlwPUGLChNIPsiwKviDNzjBo7R-TcJCc48',
-            doc3: 'https://docs.google.com/document/d/1B3I0J3B_x8h1Jq9E64eouD3H5grzwRJjlCGqMYvN4bs',
-            doc4: 'https://docs.google.com/document/d/1M4ue6HwKkUaOE6_Sx5yd9gFFZco8riFNFNClEZFmyM4',
-            doc5: 'https://docs.google.com/document/d/1S8eg-jyTmY2AkPOfMbJZaynbp0fqxj9ECldaQBaPa7s'
+            doc1: 'https://docs.google.com/document/d/1I__DeNA4dFednVUbdEQEyYMhaaQRHZPf',
+            doc2: 'https://docs.google.com/document/d/1xO5nzyALJJtmmeABpyTpTtorlGcs5oGF',
+            doc3: 'https://docs.google.com/document/d/166NafLBOtEv7CtMn2wz2clRNnNWEstHGPVjvtxlvBnw',
+            doc4: 'https://docs.google.com/document/d/11XOYA6TsvDYDFoHOjkUZ1UyiV9V5gUou8H9ryZTvv1M',
+            doc5: 'https://docs.google.com/document/d/1BIkeEEdZcwxqGQ6D1frUTHyAF2Y-vcBLYWGTNj8Rsxg'
         };
 
         const documentTitles = {
-            doc1: 'Measuring Objects',
-            doc2: 'Slime Making',
-            doc3: 'Graphs',
-            doc4: 'Biomes',
-            doc5: 'Parts of the Flower'
+            doc1: 'Dichotomous Key',
+            doc2: 'Microscopy Lab: Proper Use of a Compound Microscope',
+            doc3: 'Microscopy',
+            doc4: 'Edible Cell Model Making Lab',
+            doc5: 'Oreo Cookie Lab – Mitosis and Meiosis'
         };
 
         let currentDoc = '';

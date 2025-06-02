@@ -3,249 +3,786 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document Browser</title>
+    <title>Grade 6 Science Laboratory Reports</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
+            flex-direction: column;
             height: 100vh;
-            background-color: #ffffff; /* White background */
-            color: #333333; /* Dark text */
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: #2d3748;
+            overflow: hidden;
+        }
+
+        .grade6-banner {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .grade6-banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><text x="20" y="100" font-family="Arial" font-size="40" fill="rgba(255,255,255,0.1)" font-weight="bold">SCIENCE</text></svg>');
+            opacity: 0.3;
+            animation: watermarkScroll 60s linear infinite;
+        }
+
+        @keyframes watermarkScroll {
+            0% { background-position: 0 0; }
+            100% { background-position: 200px 200px; }
+        }
+
+        .grade6-banner-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .grade6-banner h1 {
+            font-size: 1.1em;
+            margin: 0;
+            letter-spacing: 1px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 5px rgba(255,255,255,0.5); }
+            to { text-shadow: 0 0 15px rgba(255,255,255,0.8); }
+        }
+
+        .science-icons-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 5px;
+        }
+
+        .science-icon {
+            font-size: 22px;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .science-icon:nth-child(1) { animation-delay: 0s; }
+        .science-icon:nth-child(2) { animation-delay: 0.5s; }
+        .science-icon:nth-child(3) { animation-delay: 1s; }
+        .science-icon:nth-child(4) { animation-delay: 1.5s; }
+        .science-icon:nth-child(5) { animation-delay: 2s; }
+
+        .container {
+            display: flex;
+            width: 100%;
+            height: calc(100vh - 100px);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .back-button {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            padding: 10px 15px;
-            background-color: #43af05; /* Yellow-green accent */
-            color: #ffffff; /* White text */
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 50px;
             cursor: pointer;
-            font-size: 1em;
+            font-size: 14px;
+            font-weight: 600;
             z-index: 1000;
-            transition: background 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 8px 32px rgba(6, 182, 212, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .back-button:hover {
-            background-color: #3a9404; /* Darker yellow-green */
-            transform: translateY(-3px);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(6, 182, 212, 0.4);
+        }
+
+        .sidebar {
+            width: 400px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .sidebar-header {
+            padding: 25px 25px 18px;
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+        }
+
+        .sidebar-header h1 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .sidebar-header p {
+            font-size: 13px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        .search-container {
+            padding: 18px 25px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .search-box {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 16px 12px 45px;
+            border: 2px solid rgba(6, 182, 212, 0.1);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: #06b6d4;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #06b6d4;
+            font-size: 16px;
         }
 
         .document-list {
-            width: 350px;
-            background-color: #ffffff; /* White background */
-            color: #333333; /* Dark text */
-            padding: 20px;
+            flex: 1;
+            padding: 0 25px 25px;
             overflow-y: auto;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-            border-right: 1px solid #e0e0e0; /* Light gray border */
         }
 
-        .document-list h1, .document-list h2 {
-            border-bottom: 2px solid #43af05; /* Yellow-green accent */
-            padding-bottom: 5px;
-            color: #43af05; /* Yellow-green accent */
+        .document-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .document-list::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 3px;
+        }
+
+        .document-list::-webkit-scrollbar-thumb {
+            background: #06b6d4;
+            border-radius: 3px;
         }
 
         .document-item {
-            padding: 12px;
+            padding: 18px 20px;
             cursor: pointer;
-            border-radius: 6px;
-            margin: 8px 0;
-            background-color: #f5f5f5; /* Light gray background */
+            border-radius: 16px;
+            margin: 12px 0;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: background 0.3s ease, transform 0.3s ease;
-            border: 1px solid #e0e0e0; /* Light gray border */
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
         }
 
-        .document-item:hover, .document-item.selected {
-            background-color: #43af05; /* Yellow-green accent */
-            color: #ffffff; /* White text */
+        .document-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .document-item:hover::before {
+            left: 100%;
+        }
+
+        .document-item:hover {
             transform: translateY(-3px);
-            border-color: #43af05; /* Yellow-green border */
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.2);
+            border-color: rgba(6, 182, 212, 0.3);
         }
 
-        .document-time {
-            font-size: 0.9em;
-            opacity: 0.8;
+        .document-item.selected {
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(6, 182, 212, 0.4);
         }
 
-        .preview-panel {
+        .document-item.selected::before {
+            display: none;
+        }
+
+        .document-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .document-icon {
+            font-size: 20px;
+            color: #06b6d4;
+            transition: all 0.3s ease;
+        }
+
+        .document-item.selected .document-icon {
+            color: white;
+        }
+
+        .document-info {
+            flex: 1;
+        }
+
+        .document-name {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .document-description {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        .document-status {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            background: rgba(34, 197, 94, 0.1);
+            color: #16a34a;
+        }
+
+        .main-panel {
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
             position: relative;
-            background-color: #ffffff; /* White background */
+            height: 100%;
+        }
+
+        .panel-header {
+            padding: 10px 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .panel-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1e293b;
         }
 
         .button-container {
             display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
+            gap: 12px;
         }
 
-        .button {
-            padding: 12px 18px;
+        .btn {
+            padding: 10px 20px;
             border: none;
             cursor: pointer;
-            border-radius: 6px;
-            font-size: 1em;
-            transition: background 0.3s ease, transform 0.3s ease;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: inherit;
         }
 
-        .open-btn {
-            background-color: #43af05; /* Yellow-green accent */
-            color: #ffffff; /* White text */
+        .btn-primary {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
         }
 
-        .open-btn:hover {
-            background-color: #3a9404; /* Darker yellow-green */
-            transform: translateY(-3px);
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(6, 182, 212, 0.4);
         }
 
-        .close-btn {
-            background-color: #f02e2e; /* Light gray */
-            color: #ffffff; /* Dark text */
-            border: 1px solid #e0e0e0; /* Light gray border */
+        .btn-secondary {
+            background: rgba(248, 250, 252, 0.8);
+            color: #64748b;
+            border: 1px solid rgba(203, 213, 225, 0.5);
         }
 
-        .close-btn:hover {
-            background-color: #e0e0e0; /* Lighter gray */
-            transform: translateY(-3px);
+        .btn-secondary:hover {
+            background: rgba(241, 245, 249, 0.9);
+            transform: translateY(-1px);
+        }
+
+        .preview-container {
+            flex: 1;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            height: calc(100% - 80px);
         }
 
         .preview-iframe {
             width: 100%;
-            height: 90vh;
+            height: 100%;
             border: none;
-            border-radius: 6px;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
             display: none;
-            border: 1px solid #e0e0e0; /* Light gray border */
         }
 
         .placeholder {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 90vh;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            color: #64748b;
         }
 
-        .placeholder img {
-            max-width: 100%;
-            max-height: 100%;
+        .placeholder-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .placeholder h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .placeholder p {
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(6, 182, 212, 0.3);
+            border-top: 3px solid #06b6d4;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                height: calc(100vh - 80px);
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: 50vh;
+            }
+            
+            .main-panel {
+                height: 50vh;
+            }
+            
+            .back-button {
+                bottom: 20px;
+                left: 20px;
+                padding: 10px 16px;
+                font-size: 13px;
+            }
+
+            .grade6-banner {
+                padding: 10px;
+                font-size: 18px;
+            }
+
+            .science-icon {
+                font-size: 18px;
+            }
         }
     </style>
 </head>
 <body>
-    <button class="back-button" onclick="window.location.href='/index.html'">← Back to Home Page</button>
-    
-    <div class="document-list">
-        <h1>LABORATORY REPORTS/ACTIVITIES</h1>
-        
-    
-        <div class="document-item" onclick="showDocument('doc1', this)">
-            <span>Introduction to Laboratory Tools and Safety </span>
-            <span class="document-time"></span>
+    <div class="grade6-banner">
+        <div class="grade6-banner-content">
+            <h1>GRADE 6 SCIENCE LABORATORY</h1>
+            <div class="science-icons-container">
+                <i class="fas fa-atom science-icon"></i>
+                <i class="fas fa-dna science-icon"></i>
+                <i class="fas fa-vial science-icon"></i>
+                <i class="fas fa-cog science-icon"></i>
+                <i class="fas fa-chart-line science-icon"></i>
+            </div>
         </div>
-        
-        <div class="document-item" onclick="showDocument('doc2', this)">
-            <span>Laboratory Tools</span>
-            <span class="document-time"></span>
-        </div>
-
-
-        <div class="document-item" onclick="showDocument('doc3', this)">
-            <span>Scavenger Hunt: Exploring Ecosystems</span>
-            <span class="document-time"></span>
-        </div>
-        <div class="document-item" onclick="showDocument('doc4', this)">
-            <span>Separating Mixtures</span>
-            <span class="document-time"></span>
-        </div>
-        <div class="document-item" onclick="showDocument('doc5', this)">
-            <span>Paper Roller Coaster Lab</span>
-            <span class="document-time"></span>
-        </div>
-        <div class="document-item" onclick="showDocument('doc6', this)">
-            <span>Cotton Ball Launcher </span>
-            <span class="document-time"></span>
-        </div>
-        <div class="document-item" onclick="showDocument('doc7', this)">
-            <span>Electric Circuit</span>
-            <span class="document-time"></span>
-        </div>
-        
     </div>
 
-    <div class="preview-panel" id="preview-panel">
-        <div class="button-container" id="button-container" style="display: none;">
-            <button class="button open-btn" id="open-btn" onclick="openInNewTab()">Open in New Tab</button>
-            <button class="button close-btn" onclick="closePreview()">Close</button>
+    <div class="container">
+        <button class="back-button" onclick="window.location.href='/LABrary.html'">
+            <i class="fas fa-arrow-left"></i>
+            Back to Home
+        </button>
+        
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h1>Laboratory Reports</h1>
+                <p>Advanced Scientific Research & Analysis</p>
+            </div>
+            
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search reports...">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+            </div>
+            
+            <div class="document-list" id="documentList">
+                <div class="document-item" onclick="showDocument('doc1', this)" data-name="pass module 1 identifying the scientific problem formulating a hypothesis">
+                    <div class="document-content">
+                        <i class="fas fa-question-circle document-icon"></i>
+                        <div class="document-info">
+                            <div class="document-name">PASS Module 1: Scientific Problem & Hypothesis</div>
+                            <div class="document-description">Problem identification & hypothesis formulation</div>
+                        </div>
+                    </div>
+                    <div class="document-status">Active</div>
+                </div>
+                
+                <div class="document-item" onclick="showDocument('doc2', this)" data-name="pass module 2 variables">
+                    <div class="document-content">
+                        <i class="fas fa-sliders-h document-icon"></i>
+                        <div class="document-info">
+                            <div class="document-name">PASS Module 2: Variables</div>
+                            <div class="document-description">Independent, dependent & controlled variables</div>
+                        </div>
+                    </div>
+                    <div class="document-status">Active</div>
+                </div>
+                
+                <div class="document-item" onclick="showDocument('doc3', this)" data-name="pass module 3 measurements">
+                    <div class="document-content">
+                        <i class="fas fa-ruler document-icon"></i>
+                        <div class="document-info">
+                            <div class="document-name">PASS Module 3: Measurements</div>
+                            <div class="document-description">Scientific measurement techniques</div>
+                        </div>
+                    </div>
+                    <div class="document-status">Active</div>
+                </div>
+
+                <div class="document-item" onclick="showDocument('doc4', this)" data-name="pass module 4 analyzing and interpreting data">
+                    <div class="document-content">
+                        <i class="fas fa-chart-bar document-icon"></i>
+                        <div class="document-info">
+                            <div class="document-name">PASS Module 4: Analyzing & Interpreting Data</div>
+                            <div class="document-description">Data analysis & interpretation methods</div>
+                        </div>
+                    </div>
+                    <div class="document-status">Active</div>
+                </div>
+
+                <div class="document-item" onclick="showDocument('doc5', this)" data-name="pass module 5 designing an experiment">
+                    <div class="document-content">
+                        <i class="fas fa-flask document-icon"></i>
+                        <div class="document-info">
+                            <div class="document-name">PASS Module 5: Designing an Experiment</div>
+                            <div class="document-description">Experimental design principles</div>
+                        </div>
+                    </div>
+                    <div class="document-status">Active</div>
+                </div>
+
+                <div class="document-item" onclick="showDocument('doc6', this)" data-name="exit point genetics">
+                    <div class="document-content">
+                        <i class="fas fa-dna document-icon"></i>
+                        <div class="document-info">
+                            <div class="document-name">Exit Point: Genetics</div>
+                            <div class="document-description">Heredity & genetic principles</div>
+                        </div>
+                    </div>
+                    <div class="document-status">Active</div>
+                </div>
+
+                <div class="document-item" onclick="showDocument('doc7', this)" data-name="physical or chemical">
+                    <div class="document-content">
+                        <i class="fas fa-atom document-icon"></i>
+                        <div class="document-info">
+                            <div class="document-name">Physical or Chemical Changes</div>
+                            <div class="document-description">Matter transformations analysis</div>
+                        </div>
+                    </div>
+                    <div class="document-status">Active</div>
+                </div>
+
+                <div class="document-item" onclick="showDocument('doc8', this)" data-name="egg drop challenge lab worksheet">
+                    <div class="document-content">
+                        <i class="fas fa-parachute-box document-icon"></i>
+                        <div class="document-info">
+                            <div class="document-name">Egg Drop Challenge Lab</div>
+                            <div class="document-description">Engineering design challenge</div>
+                        </div>
+                    </div>
+                    <div class="document-status">Active</div>
+                </div>
+
+                <div class="document-item" onclick="showDocument('doc9', this)" data-name="exit point kinetic particle theory">
+                    <div class="document-content">
+                        <i class="fas fa-sphere document-icon"></i>
+                        <div class="document-info">
+                            <div class="document-name">Exit Point: Kinetic Particle Theory</div>
+                            <div class="document-description">Particle motion & behavior</div>
+                        </div>
+                    </div>
+                    <div class="document-status">Active</div>
+                </div>
+
+                <div class="document-item" onclick="showDocument('doc10', this)" data-name="exit point energy">
+                    <div class="document-content">
+                        <i class="fas fa-bolt document-icon"></i>
+                        <div class="document-info">
+                            <div class="document-name">Exit Point: Energy</div>
+                            <div class="document-description">Energy forms & transformations</div>
+                        </div>
+                    </div>
+                    <div class="document-status">Active</div>
+                </div>
+            </div>
         </div>
-        <iframe id="preview-iframe" class="preview-iframe"></iframe>
-        <div class="placeholder" id="placeholder">
-            <img src="/img/scienceGifimage.gif" alt="Loading...">
+
+        <div class="main-panel">
+            <div class="panel-header">
+                <div class="panel-title" id="panelTitle">Select a Report to View</div>
+                <div class="button-container" id="buttonContainer" style="display: none;">
+                    <button class="btn btn-primary" id="openBtn" onclick="openInNewTab()">
+                        <i class="fas fa-external-link-alt"></i>
+                        Open in New Tab
+                    </button>
+                    <button class="btn btn-secondary" onclick="closePreview()">
+                        <i class="fas fa-times"></i>
+                        Close
+                    </button>
+                </div>
+            </div>
+            
+            <div class="preview-container">
+                <div class="loading-overlay" id="loadingOverlay">
+                    <div class="loading-spinner"></div>
+                </div>
+                
+                <iframe id="previewIframe" class="preview-iframe"></iframe>
+                
+                <div class="placeholder" id="placeholder">
+                    <i class="fas fa-atom placeholder-icon"></i>
+                    <h3>Welcome to Grade 6 Laboratory</h3>
+                    <p>Select a report from the sidebar to begin exploring advanced science</p>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
         const documents = {
-            doc1: 'https://docs.google.com/document/d/1XE8YZIR_mGrtxI6GnpTdaX7isgfinZtRCRZnuPi1rcY',
-            doc2: 'https://docs.google.com/document/d/1C2nQn-npmbagRP0XuZfFKJ5TSi68Jw8ruKtcN6KuXy8',
-            doc3: 'https://docs.google.com/document/d/1W5oQspTY8u-nFUu9nkBBxJVYQAhs3I_91lzJT1mldPE',
-            doc4: 'https://docs.google.com/document/d/1w5aUH2lprwN26wZxDicLo4ZxQ-y7TR5ZpraGMymjWGY',
-            doc5: 'https://docs.google.com/document/d/1b_KHdraxQjjtjiU-rh7Vw71UcToOhK_W2Stif3zVlrA',
-            doc6: 'https://docs.google.com/document/d/1orMgOB5j8Y_v60olqQrWHs24CxxYk9qWJuNtsAQhkaE',
-            doc7: 'https://docs.google.com/document/d/1Pkz-Ry5J16N-9ycJxzmvJwPRkjsgykIfFJjkqpZfsl8'
+            doc1: 'https://docs.google.com/document/d/1AyL1e5eTfO3CvM7la7M41dxBbjO60BCuILEUW6KQjpg',
+            doc2: 'https://docs.google.com/document/d/1zsqV8hGFkeVCngqkaZjvIC6OW05X1Xq72HWQdXzJXKM',
+            doc3: 'https://docs.google.com/document/d/1OVTYOtg7Fm4rG5g0Z1sWZCuE1vOTD2hvN1P98123a3g',
+            doc4: 'https://docs.google.com/document/d/1Sg7izgFZ3O11GDghSm7nS4YhxSzvoUqu5CYg-zf2wOc',
+            doc5: 'https://docs.google.com/document/d/1xfBYz7d-CUAvF-2z67IFy9qcQaz9cOeblLNJXZlZJIg',
+            doc6: 'https://docs.google.com/document/d/1KaQoTummiYmi5n03x-bHsD9eRDq_qPwgxnZNFAjLfgo',
+            doc7: 'https://docs.google.com/document/d/1MgYN_qZHAJJxkSqDQcXfEz6CcH4jnE_Scv05MlPV8L4',
+            doc8: 'https://docs.google.com/document/d/14Jfg__dQZ0Wakxs0QHjfqXY-RSdAzQex4swRKf8ZqfM',
+            doc9: 'https://docs.google.com/document/d/1bFu8BW2IPFFvwb7ATVDTmKYEP05UVE6dPy7SnWdbncM',
+            doc10: 'https://docs.google.com/document/d/161Qaw26GdOzX3KzuRyPgagbEWVT7njtq4ptIei4Vt5M'
+        };
+
+        const documentTitles = {
+            doc1: 'PASS Module 1: Scientific Problem & Hypothesis',
+            doc2: 'PASS Module 2: Variables',
+            doc3: 'PASS Module 3: Measurements',
+            doc4: 'PASS Module 4: Analyzing & Interpreting Data',
+            doc5: 'PASS Module 5: Designing an Experiment',
+            doc6: 'Exit Point: Genetics',
+            doc7: 'Physical or Chemical Changes',
+            doc8: 'Egg Drop Challenge Lab',
+            doc9: 'Exit Point: Kinetic Particle Theory',
+            doc10: 'Exit Point: Energy'
         };
 
         let currentDoc = '';
         let selectedItem = null;
+        let allItems = Array.from(document.querySelectorAll('.document-item'));
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const items = document.querySelectorAll('.document-item');
+            
+            items.forEach(item => {
+                const name = item.getAttribute('data-name').toLowerCase();
+                if (name.includes(searchTerm)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
 
         function showDocument(docId, element) {
-            const previewPanel = document.getElementById('preview-panel');
-            const previewIframe = document.getElementById('preview-iframe');
-            const buttonContainer = document.getElementById('button-container');
+            const previewIframe = document.getElementById('previewIframe');
+            const buttonContainer = document.getElementById('buttonContainer');
             const placeholder = document.getElementById('placeholder');
+            const panelTitle = document.getElementById('panelTitle');
+            const loadingOverlay = document.getElementById('loadingOverlay');
 
-            // Remove the "selected" class from the previously selected item
+            // Remove selection from previous item
             if (selectedItem) {
                 selectedItem.classList.remove('selected');
             }
 
-            // Add the "selected" class to the clicked item
+            // Add selection to current item
             element.classList.add('selected');
             selectedItem = element;
 
+            // Show loading
+            loadingOverlay.style.display = 'flex';
+            
+            // Update UI
             currentDoc = documents[docId];
-            previewIframe.src = currentDoc + '/preview';
-            previewIframe.style.display = 'block';
+            panelTitle.textContent = documentTitles[docId];
             buttonContainer.style.display = 'flex';
             placeholder.style.display = 'none';
+            
+            // Load document with delay to show loading
+            setTimeout(() => {
+                previewIframe.src = currentDoc + '/preview';
+                previewIframe.style.display = 'block';
+                loadingOverlay.style.display = 'none';
+            }, 800);
         }
 
         function closePreview() {
-            const previewIframe = document.getElementById('preview-iframe');
-            const buttonContainer = document.getElementById('button-container');
+            const previewIframe = document.getElementById('previewIframe');
+            const buttonContainer = document.getElementById('buttonContainer');
             const placeholder = document.getElementById('placeholder');
+            const panelTitle = document.getElementById('panelTitle');
 
             previewIframe.style.display = 'none';
             previewIframe.src = '';
             buttonContainer.style.display = 'none';
             placeholder.style.display = 'flex';
+            panelTitle.textContent = 'Select a Report to View';
 
-            // Remove the "selected" class when the preview is closed
             if (selectedItem) {
                 selectedItem.classList.remove('selected');
                 selectedItem = null;
