@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -26,42 +27,53 @@
             overflow-x: hidden;
         }
 
-        /* Navigation */
+         /* Navigation */
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 15px 0;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
+            padding: 20px 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        nav.scrolled {
-            padding: 10px 0;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-container {
+        nav .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 30px;
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Orbitron', monospace;
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-decoration: none;
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover::after {
+            transform: scaleX(1);
         }
 
         .nav-links {
@@ -72,33 +84,36 @@
 
         .nav-links a {
             text-decoration: none;
-            color: #4a5568;
+            color: #2d3748;
             font-weight: 500;
-            font-size: 15px;
-            transition: all 0.3s ease;
+            font-size: 16px;
             position: relative;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 8px;
         }
 
-        .nav-links a::after {
+        .nav-links a::before {
             content: '';
             position: absolute;
             bottom: -5px;
-            left: 0;
+            left: 50%;
             width: 0;
             height: 2px;
             background: linear-gradient(135deg, #667eea, #764ba2);
-            transition: width 0.3s ease;
+            transition: all 0.3s ease;
         }
 
-        .nav-links a:hover::after,
-        .nav-links a[aria-current="page"]::after {
-            width: 100%;
-        }
-
-        .nav-links a:hover,
-        .nav-links a[aria-current="page"] {
+        .nav-links a:hover {
             color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
         }
+
+        .nav-links a:hover::before {
+            width: 80%;
+            left: 10%;
+        }
+
 
         /* Hero Section */
         .hero {
@@ -513,18 +528,20 @@
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">Science LABrary</a>
-            <ul class="nav-links">
-                <li><a href="#home" aria-current="page">Home</a></li>
+
+    <nav>
+        <div class="container">
+            <div class="logo">Science LABrary</div>
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="LABrary.html">LABrary</a></li>
             </ul>
-            <button class="mobile-menu-toggle">
-                <i class="fas fa-bars"></i>
-            </button>
         </div>
     </nav>
 
