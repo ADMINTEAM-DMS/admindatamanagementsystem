@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aesthetic Blue Theme</title>
+  <title>BlueWave Portal</title>
   <style>
     :root {
       --navy: #1e2a38;
@@ -31,7 +30,7 @@
     }
 
     nav {
-      background-color: var(--navy-dark); /* Darker header */
+      background-color: var(--navy-dark);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -68,7 +67,9 @@
       justify-content: center;
       padding: 4rem 2rem;
       text-align: center;
-      background: radial-gradient(circle at center, var(--navy), #121a24);
+      background: 
+        linear-gradient(rgba(30, 42, 56, 0.8), rgba(30, 42, 56, 0.8)),
+        url('images/hero-bg.jpg') center/cover no-repeat;
     }
 
     .hero-content h1 {
@@ -119,7 +120,7 @@
     }
 
     footer {
-      background: #141d26;
+      background: var(--navy-dark);
       text-align: center;
       padding: 1rem;
       color: #ccc;
@@ -129,7 +130,7 @@
 <body>
 
   <nav>
-    <div class="logo">Administrative Data Management System</div>
+    <div class="logo">BlueWave Portal</div>
     <div class="nav-links">
       <a href="#">Home</a>
       <a href="#">About</a>
@@ -139,8 +140,8 @@
 
   <section class="hero">
     <div class="hero-content">
-      <h1>Welcome to ADMIN_DMS</h1>
-      
+      <h1>Welcome to BlueWave Portal</h1>
+      <p>A clean, aesthetic platform powered by navy blue, with sparks of maroon and yellow — designed to inspire curiosity and creativity.</p>
       <div class="btn-group">
         <button class="btn btn-primary">Get Started</button>
         <button class="btn btn-secondary">Learn More</button>
@@ -149,7 +150,7 @@
   </section>
 
   <footer>
-    <p>&copy; 2025 SSIS-B All rights reserved.</p>
+    <p>&copy; 2025 BlueWave Portal. All rights reserved.</p>
   </footer>
 
 </body>
