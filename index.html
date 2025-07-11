@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aesthetic Blue Theme</title>
+  <title>ADMIN-DMS</title>
   <style>
     :root {
       --navy: #1e2a38;
@@ -46,6 +46,9 @@
       align-items: center;
       padding: 1.5rem 2rem;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 10;
       animation: slideDown 1s ease-out;
     }
 
@@ -82,14 +85,14 @@
       color: var(--yellow);
     }
 
-    .hero {
+    #home.hero {
       flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 4rem 2rem;
       text-align: center;
-      background-image: url('img/SSIS-B.jpg');
+      background-image: url('img/SSIS-B.jpg'); /* Make sure this path is correct */
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -124,13 +127,6 @@
       font-size: 3rem;
       margin-bottom: 1rem;
       color: var(--yellow);
-    }
-
-    .hero-content p {
-      font-size: 1.2rem;
-      max-width: 600px;
-      margin: 0 auto 2rem;
-      color: #e0e0e0;
     }
 
     .btn-group {
@@ -173,7 +169,7 @@
       background-color: #5c1515;
     }
 
-    .about-section {
+    #about.about-section {
       background-color: var(--navy-dark);
       padding: 4rem 2rem;
       text-align: center;
@@ -210,16 +206,18 @@
 </head>
 <body>
 
+  <!-- Navigation -->
   <nav>
     <div class="logo">Administrative Data Management System</div>
     <div class="nav-links">
-      <a href="#">Home</a>
+      <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#">Resources</a>
     </div>
   </nav>
 
-  <section class="hero">
+  <!-- Hero Section -->
+  <section id="home" class="hero">
     <div class="hero-content">
       <h1>Welcome to ADMIN-DMS</h1>
       <div class="btn-group">
@@ -229,6 +227,7 @@
     </div>
   </section>
 
+  <!-- About Section -->
   <section id="about" class="about-section">
     <h2>About ADMIN-DMS</h2>
     <p>
@@ -237,6 +236,7 @@
     </p>
   </section>
 
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 STONYHURST SOUTHVILLE INTERNATIONAL SCHOOL. All rights reserved.</p>
   </footer>
