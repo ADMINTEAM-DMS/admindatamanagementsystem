@@ -19,6 +19,10 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Century Gothic', sans-serif;
       background-color: var(--navy);
@@ -27,6 +31,12 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      animation: fadeInBody 1s ease-in-out;
+    }
+
+    @keyframes fadeInBody {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     nav {
@@ -36,6 +46,18 @@
       align-items: center;
       padding: 1.5rem 2rem;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      animation: slideDown 1s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
 
     .logo {
@@ -67,7 +89,7 @@
       justify-content: center;
       padding: 4rem 2rem;
       text-align: center;
-      background-image: url('img/SSIS-B.jpg'); /* 🔁 Replace with your image path */
+      background-image: url('img/SSIS-B.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -78,13 +100,25 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(30, 42, 56, 0.7); /* semi-transparent overlay */
+      background: rgba(30, 42, 56, 0.7);
     }
 
     .hero-content {
       position: relative;
       z-index: 1;
       color: var(--white);
+      animation: fadeInUp 1.5s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
 
     .hero-content h1 {
@@ -114,6 +148,12 @@
       font-size: 1rem;
       cursor: pointer;
       transition: all 0.3s ease;
+      box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
     }
 
     .btn-primary {
@@ -139,6 +179,7 @@
       text-align: center;
       padding: 1rem;
       color: #ccc;
+      animation: fadeInBody 2s ease-in-out;
     }
   </style>
 </head>
