@@ -27,16 +27,7 @@
       font-family: 'Century Gothic', sans-serif;
       background-color: var(--navy);
       color: var(--white);
-      line-height: 1.6;
-      display: flex;
-      flex-direction: column;
       min-height: 100vh;
-      animation: fadeInBody 1s ease-in-out;
-    }
-
-    @keyframes fadeInBody {
-      from { opacity: 0; }
-      to { opacity: 1; }
     }
 
     nav {
@@ -45,16 +36,9 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.5rem 2rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
       position: sticky;
       top: 0;
-      z-index: 10;
-      animation: slideDown 1s ease-out;
-    }
-
-    @keyframes slideDown {
-      from { transform: translateY(-50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+      z-index: 1000;
     }
 
     .logo {
@@ -72,8 +56,8 @@
       color: var(--white);
       text-decoration: none;
       font-weight: 500;
-      transition: color 0.3s ease;
       cursor: pointer;
+      transition: color 0.3s ease;
     }
 
     .nav-links a:hover {
@@ -81,17 +65,17 @@
     }
 
     #home.hero {
-      flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 4rem 2rem;
       text-align: center;
-      background-image: url('img/SSIS-B.jpg'); /* Replace with your image path */
+      background-image: url('img/SSIS-B.jpg'); /* Ensure image exists */
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       position: relative;
+      height: 100vh;
     }
 
     .hero::before {
@@ -104,12 +88,6 @@
     .hero-content {
       position: relative;
       z-index: 1;
-      animation: fadeInUp 1.5s ease-out;
-    }
-
-    @keyframes fadeInUp {
-      from { transform: translateY(30px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
     }
 
     .hero-content h1 {
@@ -132,12 +110,6 @@
       font-size: 1rem;
       cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 0 0 rgba(255, 255, 255, 0);
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
     }
 
     .btn-primary {
@@ -158,38 +130,69 @@
       background-color: #5c1515;
     }
 
-    #about {
-      display: none; /* Hidden by default */
-      background-color: var(--navy-dark);
-      padding: 4rem 2rem;
-      text-align: center;
-      animation: fadeInTab 0.5s ease-in-out;
-    }
-
-    #about h2 {
-      color: var(--yellow);
-      margin-bottom: 1rem;
-      font-size: 2.5rem;
-    }
-
-    #about p {
-      max-width: 700px;
-      margin: 0 auto;
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: #ddd;
-    }
-
-    @keyframes fadeInTab {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     footer {
       background: #141d26;
       text-align: center;
       padding: 1rem;
       color: #ccc;
+    }
+
+    /* MODAL STYLES */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      animation: fadeIn 0.3s ease-out forwards;
+    }
+
+    .modal-content {
+      background-color: var(--navy-dark);
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 600px;
+      width: 90%;
+      text-align: center;
+      color: var(--white);
+      position: relative;
+      animation: slideUp 0.3s ease-out;
+    }
+
+    .modal h2 {
+      color: var(--yellow);
+      margin-bottom: 1rem;
+    }
+
+    .modal p {
+      font-size: 1.1rem;
+      color: #ddd;
+      line-height: 1.6;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-size: 1.5rem;
+      color: #ccc;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      color: var(--yellow);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
   </style>
 </head>
@@ -199,7 +202,7 @@
   <nav>
     <div class="logo">Administrative Data Management System</div>
     <div class="nav-links">
-      <a href="#home">Home</a>
+      <a id="home-link">Home</a>
       <a id="about-link">About</a>
       <a href="#">Resources</a>
     </div>
@@ -216,32 +219,52 @@
     </div>
   </section>
 
-  <!-- About Section (Hidden Initially) -->
-  <section id="about">
-    <h2>About ADMIN-DMS</h2>
-    <p>
-      ADMIN-DMS (Administrative Data Management System) is a modern platform designed to streamline data organization,
-      improve administrative workflows, and provide a centralized solution for school operations.
-    </p>
-  </section>
+  <!-- Modal: About Section -->
+  <div id="about-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="close-modal">&times;</span>
+      <h2>About ADMIN-DMS</h2>
+      <p>
+        ADMIN-DMS (Administrative Data Management System) is a modern platform designed to streamline data organization,
+        improve administrative workflows, and provide a centralized solution for school operations.
+      </p>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer>
     <p>&copy; 2025 STONYHURST SOUTHVILLE INTERNATIONAL SCHOOL. All rights reserved.</p>
   </footer>
 
-  <!-- JavaScript to Toggle About Section -->
+  <!-- JavaScript -->
   <script>
     const aboutLink = document.getElementById('about-link');
-    const aboutSection = document.getElementById('about');
+    const homeLink = document.getElementById('home-link');
+    const aboutModal = document.getElementById('about-modal');
+    const closeModal = document.getElementById('close-modal');
+    const homeSection = document.getElementById('home');
 
+    // Show modal
     aboutLink.addEventListener('click', () => {
-      if (aboutSection.style.display === 'none' || !aboutSection.style.display) {
-        aboutSection.style.display = 'block';
-        aboutSection.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        aboutSection.style.display = 'none';
+      aboutModal.style.display = 'flex';
+    });
+
+    // Close modal
+    closeModal.addEventListener('click', () => {
+      aboutModal.style.display = 'none';
+    });
+
+    // Close when clicking outside modal content
+    window.addEventListener('click', (e) => {
+      if (e.target === aboutModal) {
+        aboutModal.style.display = 'none';
       }
+    });
+
+    // Scroll to top (home) and close modal
+    homeLink.addEventListener('click', () => {
+      aboutModal.style.display = 'none';
+      homeSection.scrollIntoView({ behavior: 'smooth' });
     });
   </script>
 </body>
